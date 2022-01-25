@@ -1,0 +1,44 @@
+"""
+Graphics
+Instruction Practice: Text
+The King's Armies
+"""
+
+#### ---- SETUP ---- ####
+
+import tsapp
+window = tsapp.GraphicsWindow()
+
+#### ---- SPRITE CREATION ---- ####
+
+background = tsapp.Sprite("AcademyCastle.jpg", 0, 0)
+man = tsapp.Sprite("Nobleman.png", 100, 200)
+man_bubble = tsapp.Sprite("SpeechBubble.png", 180, 30)
+woman = tsapp.Sprite("Noblewoman.png", 600, 200)
+woman_bubble = tsapp.Sprite("SpeechBubble.png", 350, 200)
+
+woman.flip_x = True
+woman_bubble.flip_x = True
+
+#### ---- TEXT CREATION ---- ####
+dude_text = tsapp.TextLabel("Acme-Regular.ttf", 30, 225,100,200,"Where does the king keep his armies?", tsapp.BLACK)
+woman_text = tsapp.TextLabel("Acme-Regular.ttf", 50, 400, 275, 200, "Up his sleevies!", tsapp.RED)
+
+#### ---- SCENE CREATION ---- ####
+
+## -- Sprites -- ##
+
+window.add_object(background)
+window.add_object(man)
+window.add_object(man_bubble)
+window.add_object(woman)
+window.add_object(woman_bubble)
+
+## -- Text -- ##
+window.add_object(dude_text)
+window.add_object(woman_text)
+
+#### ---- MAIN LOOP ---- ####
+
+while window.is_running:
+    window.finish_frame()
