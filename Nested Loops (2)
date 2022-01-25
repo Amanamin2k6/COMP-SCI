@@ -1,0 +1,39 @@
+"""
+While Loops
+Technique Practice: Nested Loops
+Continuous Countdown
+"""
+
+#### ---- LIBRARY SETUP ---- ####
+
+import ts_timer
+
+#### ---- TIMER LOGIC ---- ####
+repeat = True
+## -- Outer-loop setup -- ##
+while repeat:
+
+
+    ## -- Inner-loop setup -- ##
+
+    total_time = int(input("Enter how long would you like to set the timer (1 - 10 seconds): "))
+    while total_time > 0:
+
+        ## -- Timer output -- ##
+
+        print(total_time)
+        ts_timer.wait_one_second()
+        total_time -= 1
+
+    print("DING DING DING")
+    print("Your timer has finished")
+    print()
+
+    ## -- Repeat logic -- ##
+    repeat = input("Do you want to set another timer? y/n ") == "y"
+    
+        
+
+print()
+print("Thank you for using our timer app")
+
