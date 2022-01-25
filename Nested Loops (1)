@@ -1,0 +1,35 @@
+"""
+While Loops
+Technique Practice: Nested Loops
+Checkerboard Creator
+"""
+
+#### ---- SETUP AND INPUT ---- ####
+
+import ts_checkerboard
+
+size = int(input("How large should the checkerboard be? (2 - 50)  "))
+print()
+
+#### ---- BOARD OUTPUT ---- ####
+
+## -- Outer-loop setup -- ##
+
+row = 1
+
+while row <= size:
+    pattern = ""
+    
+    ## -- Inner-loop setup -- ##
+    column = 1
+    while column <= size:
+
+        ## -- Pattern building -- ##
+        pattern += ts_checkerboard.get_square(row, column)
+        column += 1
+
+
+    ## -- Row end -- ##
+
+    print(pattern)
+    row += 1
