@@ -1,0 +1,51 @@
+"""
+While Loops
+Technique Practice: True Until False
+Canine Capers
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Libraries -- ##
+
+import ts_wizard_dogs
+import random
+
+## -- Game setup -- ##
+
+print("One of these canine wizards has stolen dangerous magical secrets from the library.")
+print("All 5 are about to teleport away. You'll only have time to stop 3 of them from disappearing")
+print()
+ts_wizard_dogs.setup_scene()
+thief = random.randint(1, 5)
+## -- Boolean variable -- ##
+
+found_thief = False
+
+#### ---- GAME LOOP ---- ####
+
+## -- Loop variables -- ##
+
+attempts = 0
+while attempts < 3:
+    attempts += 1
+    guess = int(input("Choice " + str(attempts) + ": Choose a wizard dog to stop (1 - 5): "))
+
+    ## -- Thief check -- ##
+    if guess == thief:
+        found_thief = True
+
+
+#### ---- OUTPUT ---- ####
+
+## -- Investigation results -- ##
+
+print()
+print("You check the bags of the doggy wizards you stopped and ....")
+if found_thief:
+    print("Congratulations! The thief was wizard dog number " + str(thief)  + ". You found them!")
+else:
+    print("Oh no ... they got away!")
+
+
+
