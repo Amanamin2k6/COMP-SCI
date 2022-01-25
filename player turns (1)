@@ -1,0 +1,60 @@
+"""
+While Loops
+Technique Practice: Player Turns
+Part 1: Animal Chain
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Library -- ##
+
+import ts_chain_game
+
+## -- Game setup -- ##
+
+ts_chain_game.print_intro()
+first_animal = ts_chain_game.get_animal()
+last_letter = ts_chain_game.get_last_letter(first_animal)
+
+## -- Player info -- ##
+num_players = int(input("How many players are playing? "))
+current_player = 1
+
+## -- Game start -- ##
+
+print()
+print("Great, I'll start us off! My animal is " + first_animal + ".")
+print()
+
+#### ---- GAME LOOP ---- ####
+
+## -- Loop variables -- ##
+
+
+
+playing = True
+
+while playing:
+
+    ## -- Player display -- ##
+    print("Player " + str(current_player) +  ", it is your turn!")
+
+
+    ## -- Player input -- ##
+
+    animal = input("enter an animal that starts with '" + last_letter + "': ")
+    print()
+
+    ## -- Game over check -- ##
+
+    if ts_chain_game.get_first_letter(animal) != last_letter:
+        playing = False
+        print("Player " + str(current_player) + ", you lose!")
+
+    ## -- Letter update -- ##
+
+    last_letter = ts_chain_game.get_last_letter(animal)
+
+    ## -- Player change -- ##
+    current_player = current_player % num_players + 1
+
