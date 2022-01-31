@@ -1,0 +1,53 @@
+"""
+Graphics
+Coding Exercise: Graphics
+Meme Maker
+"""
+
+#### ---- LIBRARIES ---- ####
+
+import tsapp
+import random
+#### ---- INPUT ---- ####
+
+## -- Image menu -- ##
+print("Welcome to Meme Maker!")
+print("Enter one of the following meme templates:")
+print("     - PartyFish")
+print("     - PanRabbit")
+print("     - WhatTheBat")
+print("     - CautiousFrog")
+print("     - WorkingFly")
+
+
+## -- User input -- ##
+user = input("Select an image: ")
+text = input("What should teh caption say? ")
+
+#### ---- IMAGE ---- ####
+
+## -- Window -- ##
+window = tsapp.GraphicsWindow()
+
+
+## -- Background -- ##
+num = random.choice(["MemeBackground1.jpg", "MemeBackground2.jpg", "MemeBackground3.jpg", "MemeBackground4.jpg" , "MemeBackground5.jpg" ])
+bg = tsapp.Sprite(num,0,0)
+window.add_object(bg)
+
+## -- Image -- ##
+user += ".png"
+meme = tsapp.Sprite(user, window.center_x, 50)
+meme.x -= meme.width/2
+window.add_object(meme)
+
+
+## -- Text -- ##
+text = tsapp.TextLabel("WalterTurncoat-Regular.ttf", 100, 0, window.height - 50, window.width, text, tsapp.BLACK )
+text.align = "center"
+window.add_object(text)
+
+#### ---- MAIN LOOP ---- ####
+while window.is_running:
+    window.finish_frame()
+
