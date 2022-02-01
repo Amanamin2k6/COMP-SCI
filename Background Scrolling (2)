@@ -1,0 +1,52 @@
+"""
+Animation
+Technique Practice: Scrolling Background
+First Down and Forever
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Library -- ##
+
+import tsapp
+
+## -- Window and graphics -- ##
+
+SPEED = -300
+y_offset = -350
+
+window = tsapp.GraphicsWindow()
+background = tsapp.Sprite("SportsFieldScrolling.jpg", 0, 0)
+defense =  tsapp.Sprite("FootballBlocker.png", 1100, 50)
+runner = tsapp.Sprite("FootballRunner.png", 100, 200)
+
+defense.flip_x = True
+defense.x_speed = SPEED
+
+window.add_object(background)
+window.add_object(defense)
+window.add_object(runner)
+
+## -- Background speed -- ##
+background.x_speed = -300
+
+
+#### ---- MAIN LOOP ---- ####
+
+while window.is_running:
+
+    ## -- Background reset -- ##
+    if background.x <= -window.width:
+        background.x += window.width
+
+
+    ## -- Defense movement -- ##
+
+    if defense.x <= -150:
+        defense.x = 1100
+        y_offset *= -1
+        defense.y += y_offset
+
+    ## -- Finish frame -- ##
+    
+    window.finish_frame()
