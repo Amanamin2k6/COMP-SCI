@@ -1,0 +1,46 @@
+"""
+Animation
+Technique Practice: Reverse Direction
+Billiard Bounce
+"""
+
+#### ---- SETUP ---- ####
+
+import tsapp
+import random
+
+window = tsapp.GraphicsWindow()
+
+#### ---- SPRITES ---- ####
+
+background = tsapp.Sprite("GreenFeltTable.jpg", 0, 0)
+
+ball = tsapp.Sprite("Ball.png", 0, 0)
+ball.scale = 0.5
+ball.center_x = window.center_x
+ball.center_y = window.center_y
+
+## -- Ball speed -- ##
+
+ball.x_speed = random.randint(300, 500)
+ball.y_speed = random.randint(150, 250)
+
+#### ---- SCENE CREATION ---- ####
+
+window.add_object(background)
+window.add_object(ball)
+
+#### ---- MAIN LOOP ---- ####
+
+while window.is_running:
+
+    ## -- Ball bounce -- ##
+    if ball.y <= 0 or ball.y >= window.height - ball.height:
+        ball.y_speed *= -1
+    if ball.x <= 0 or ball.x >= window.width - ball.width:
+        ball.x_speed *= -1
+
+
+
+
+    window.finish_frame()
