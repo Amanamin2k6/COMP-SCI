@@ -1,0 +1,57 @@
+"""
+Interaction
+Technique Practice: Sprite Walls
+Dolphin Walls
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Library -- ##
+
+import tsapp
+
+## -- Window and background -- ##
+
+window = tsapp.GraphicsWindow()
+bg = tsapp.Sprite("Pond.jpg", 0, 0)
+window.add_object(bg)
+
+## -- Dolphin and nets -- ##
+
+top_net = tsapp.Sprite("VolleyballNet.png", 0, 10)
+window.add_object(top_net)
+bottom_net = tsapp.Sprite("VolleyballNet.png", 0, 520)
+bottom_net.y = window.height - bottom_net.height - 10
+window.add_object(bottom_net)
+dolphin = tsapp.Sprite("DolphinAwake.png", 100, 300)
+window.add_object(dolphin)
+
+#### ---- MAIN LOOP ---- ####
+
+while window.is_running:
+
+    ## -- Mouse movement -- ##
+
+    last_y = dolphin.center_y
+    dolphin.center_x, dolphin.center_y = tsapp.get_mouse_position()
+
+    ## -- Sprite walls -- ##
+    if not (dolphin.is_colliding_rect(top_net) or dolphin.is_colliding_rect(bottom_net)):
+        last_y = dolphin.center_y
+        dolphin.image = "DolphinAwake.png"
+        
+        
+    if (dolphin.is_colliding_rect(top_net) or dolphin.is_colliding_rect(bottom_net)):
+        dolphin.center_y =last_y
+        dolphin.image = "DolphinSleep.png"
+        
+
+
+
+
+
+
+
+    ## -- Frame end -- ##
+
+    window.finish_frame()
