@@ -1,0 +1,134 @@
+"""
+Interaction
+Coding Exercise: Interaction
+Phone Simulator
+"""
+
+#### ---- SETUP ---- ####
+
+import tsapp
+import ts_hotline
+window = tsapp.GraphicsWindow()
+
+## -- Phone setup -- ##
+
+phone = tsapp.Sprite("PhoneBG.png", 360,10)
+key1 = tsapp.Sprite("Numpad1.png", 380, 170)
+key2 = tsapp.Sprite("Numpad2.png", 470, 170)
+key3 = tsapp.Sprite("Numpad3.png", 560, 170)
+key4 = tsapp.Sprite("Numpad4.png", 380, 230)
+key5 = tsapp.Sprite("Numpad5.png", 470, 230)
+key6 = tsapp.Sprite("Numpad6.png", 560, 230)
+key7 = tsapp.Sprite("Numpad7.png", 380, 290)
+key8 = tsapp.Sprite("Numpad8.png", 470, 290)
+key9 = tsapp.Sprite("Numpad9.png", 560, 290)
+key_asterisk = tsapp.Sprite("NumpadAsterisk.png", 380, 350)
+key0 = tsapp.Sprite("Numpad0.png", 470, 350)
+key_pound = tsapp.Sprite("NumpadPound.png", 560, 350)
+call_button = tsapp.Sprite("PhoneGreen.png", 470,430)
+call_text = tsapp.TextLabel("Roboto-Bold.ttf", 20, call_button.x, 478, 80, "CALL", tsapp.WHITE)
+call_text.align = "center"
+
+window.add_object(phone)
+window.add_object(key1)
+window.add_object(key2)
+window.add_object(key3)
+window.add_object(key4)
+window.add_object(key5)
+window.add_object(key6)
+window.add_object(key7)
+window.add_object(key8)
+window.add_object(key9)
+window.add_object(key0)
+window.add_object(key_pound)
+window.add_object(key_asterisk)
+window.add_object(call_button)
+window.add_object(call_text)
+
+## -- Number display -- ##
+
+number_display = tsapp.TextLabel("Roboto-Bold.ttf", 50, phone.x, 125, 300, "", tsapp.WHITE)
+number_display.align = "center"
+window.add_object(number_display)
+
+## -- Hotline numbers -- ##
+
+print("Dial 321 to connect to Folks with Jokes Hotline")
+print("Dial 789 to connect to Inspirational Quotes Hotline")
+print("Dial 815 to connect to Wondrous and Random Facts Hotline")
+print()
+
+## -- Variables -- ##
+number = ""
+on_call = False
+
+#### ---- MAIN LOOP ---- ####
+while window.is_running:
+    x, y = tsapp.get_mouse_position()
+
+
+
+    ## -- Dialing number -- ##
+    if tsapp.was_mouse_pressed() and key1.is_colliding_point(x, y):
+        number += "1"
+    elif tsapp.was_mouse_pressed() and key2.is_colliding_point(x, y):
+        number += "2"
+    elif tsapp.was_mouse_pressed() and key3.is_colliding_point(x, y):
+        number += "3"
+    elif tsapp.was_mouse_pressed() and key4.is_colliding_point(x, y):
+        number += "4"
+    elif tsapp.was_mouse_pressed() and key5.is_colliding_point(x, y):
+        number += "5"
+    elif tsapp.was_mouse_pressed() and key6.is_colliding_point(x, y):
+        number += "6"
+    elif tsapp.was_mouse_pressed() and key7.is_colliding_point(x, y):
+        number += "7"
+    elif tsapp.was_mouse_pressed() and key8.is_colliding_point(x, y):
+        number += "8"
+    elif tsapp.was_mouse_pressed() and key9.is_colliding_point(x, y):
+        number += "9"
+    elif tsapp.was_mouse_pressed() and key0.is_colliding_point(x, y):
+        number += "0"
+
+
+
+
+    ## -- Number display update -- ##
+    number_display.text = number
+
+
+    #### ---- CALL BUTTON ---- ####
+    if tsapp.was_mouse_pressed() and call_button.is_colliding_point(x, y):
+
+
+        ## -- Starting call -- ##
+        if not on_call:
+            on_call = True
+            call_button.image = "PhoneRed.png"
+            if number == "321":
+                ts_hotline.call_jokes()
+                print("You dialed Folks with Jokes")
+            elif number == "789":
+                ts_hotline.call_quotes()
+                print("You dialed Inspirational Quotes")
+            elif number == "815":
+                ts_hotline.call_facts()
+                print("You dialed Wondrous and Random Facts")
+            else:
+                ts_hotline.call_wrong_number()
+                print("Sorry, that's not a valid number")
+
+
+
+
+        ## -- Ending call -- ##
+        else:
+            ts_hotline.end_call()
+            call_button.image = "PhoneGreen.png"
+            on_call = False
+            number = ""
+            
+    window.finish_frame()
+
+
+
