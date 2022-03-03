@@ -1,0 +1,20 @@
+"""
+Lists and For-Each Loops
+Instruction Practice: List Indexes
+Suggested Password
+"""
+
+#### ---- SETUP ---- ####
+
+import random
+parts = ["El3ph@ant", "K!tch3n", "J34lou$", "R@nd0m", "T@ct!cs", "C0mput3r$", "L!z4rd", "C*rr3ct", "H0r$3", "B@tt3ry", "St@pl3"]
+password = ""
+
+#### ---- GENERATION ---- ####
+for i in range(3):
+    password += parts[random.randint(0,10)]
+
+
+#### ---- OUTPUT ---- ####
+
+print("Your new password is: " + password)
