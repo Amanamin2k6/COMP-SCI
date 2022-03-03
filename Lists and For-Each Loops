@@ -1,0 +1,33 @@
+"""
+Lists and For-Each Loops
+Instruction: Lists and For-Each Loops
+Part 3: Mystery Dish
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Variables -- ##
+
+dish = "cheeseburger"
+ingredients = [ "lettuce", "tomatos", "cheese", "buns"]
+
+
+#### ---- INPUT / OUTPUT ---- ####
+
+## -- Loop -- ##
+for ingredients in ingredients:
+    print(ingredients)
+    guess = input("What is it? ")
+    print()
+    if dish == guess:
+        print("Correct!")
+        break
+
+
+
+
+
+
+## -- Answer reveal -- ##
+print("The answer is Cheesebuger!")
+
