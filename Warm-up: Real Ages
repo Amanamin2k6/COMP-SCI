@@ -1,0 +1,20 @@
+"""
+List Operations
+Warm-Up: List Changes
+Real Ages
+"""
+
+#### ---- LIST OF AGES ---- ####
+
+user_ages = [21, 12, -4, 240, 18, 36, 49, 74, -20, -1890, 15]
+user_ages2 = []
+#### ---- REMOVE INVALID AGES ---- ####
+
+for age in user_ages:
+    if age < 120 and age > 0:
+        user_ages2.append(age)
+user_ages = user_ages2
+#### ---- OUTPUT ---- ####
+
+for age in user_ages:
+    print(age)
