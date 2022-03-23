@@ -1,0 +1,62 @@
+"""
+List Operations
+Coding Exercise: List Operations
+Snowfall
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Libraries -- ##
+import tsapp
+import random
+window = tsapp.GraphicsWindow()
+
+## -- Sprites -- ##
+flake_choice = ["Snowflake1.png", "Snowflake2.png", "Snowflake3.png", "Snowflake4.png", "Snowflake5.png"]
+bg = tsapp.Sprite("SnowyField.jpg", 0, 0)
+window.add_object(bg)
+onscreen = []
+snowflakes = []
+last = 0
+
+#### ---- MAIN LOOP ---- ####
+while window.is_running:
+    now = tsapp.get_program_duration()
+    if now - last > 2000:
+        last = tsapp.get_program_duration()
+
+
+
+    ## -- Snowflake creation -- ##
+    
+        image = random.choice(flake_choice)
+        sprite = tsapp.Sprite( image ,random.randint(0, 900), 0 )
+        window.add_object(sprite)
+        sprite.y_speed = random.randint(30,40)
+        snowflakes.append(sprite)
+        
+
+
+    ## -- Snowflake removal -- ##
+    x, y = tsapp.get_mouse_position()
+    for flakes in snowflakes:
+        if flakes.is_colliding_point(x, y):
+            flakes.scale *= .99
+        if flakes.center_y < 573:
+            onscreen.append(flakes)
+        if flakes.center_y >= 573:
+            flakes.destroy()
+            onscreen.remove(flakes)
+            
+    
+
+
+
+
+
+
+
+
+    ## -- Finish frame -- ##
+    window.finish_frame()
+
