@@ -1,0 +1,50 @@
+"""
+Advanced List Operations
+Instruction: Element Sorting and Selection
+Part 3: String Sorts and Selections
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Library -- ##
+
+import random
+
+## -- List -- ##
+
+words = ["May", "the", "Force", "be", "with", "you"]
+
+#### ---- OPERATIONS ---- ####
+
+## -- min -- ##
+minimum = min(words)
+print("Min: " + minimum)
+
+
+## -- max -- ##
+maximum = max(words)
+print("Max: " + maximum)
+
+
+
+## -- sort -- ##
+words.sort()
+print("Sorted: " + str(words))
+
+
+## -- reverse -- ##
+words.reverse()
+print("Reversed: " + str(words))
+
+
+
+## -- shuffle -- ##
+random.shuffle(words)
+print("Shuffled: " + str(words))
+
+
+
+## -- choice -- ##
+value = random.choice(words)
+print("Random Choice: " + str(value))
+
