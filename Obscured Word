@@ -13,20 +13,25 @@ import ts_word_list
 ## -- Word selection -- ##
 word = ts_word_list.select()
 
+display_word = ""
+for letter in word:
+    display_word += "_"
 
 ## -- Other variables -- ##
-display_word = ""
+
 num_guesses = 10
 guessed_let = []
-for i in word:
-    display_word += "_ "
-print(word)
+
 #### ---- MAIN LOOP ---- ####
-while "_ " in display_word:
+while "_" in display_word:
 
 
     ## -- Current state -- ##
-    print("Word: " + display_word)
+    print()
+    show_word = ""
+    for letter in display_word:
+        show_word += letter + " "
+    print("Word: " + show_word)
     print(" Letters guessed so far: " + str(guessed_let))
     print("You have " + str(num_guesses) + " strikes remaining.")
 
@@ -40,8 +45,15 @@ while "_ " in display_word:
     ## -- Letter check -- ##
     guessed_let.append(user_guess)
     if user_guess in word:
-        word_index = word.index(user_guess)
-        display_word = display_word[word_index + 1]
+        new_word = ""
+        for i in range(len(word)):
+            if word[i] == user_guess:
+                new_word += user_guess
+            else:
+                new_word += display_word[i]
+        display_word = new_word
+    else:
+        print("Sorry wrong letter!")
         num_guesses -= 1
 
 
@@ -55,9 +67,9 @@ while "_ " in display_word:
 
 
 #### ---- FINAL OUTPUT ---- ####
-
-#if num_guesses > 0:
-    #print("You got it!")
-#else:
-    #print("You got it wrong, the word is " + word)
+print()
+if num_guesses > 0:
+    print("You got it!")
+else:
+    print("You got it wrong, the word is " + word)
 
