@@ -1,0 +1,127 @@
+"""
+Strings as Collections
+Coding Exercise: String Slicing
+Redaction Action
+"""
+
+#### ---- SETUP ---- ####
+
+import tsapp
+import ts_secret_agent
+
+## -- Data variables -- ##
+
+text = ts_secret_agent.get_report()
+LINE_LENGTH = 50
+LINES_SHOWN = 5
+
+## -- Background graphics -- ##
+
+window = tsapp.GraphicsWindow()
+background = tsapp.Sprite("TextEditor.jpg", 0, 0)
+window.add_object(background)
+
+## -- Arrow icons -- ##
+
+up = tsapp.Sprite("ArrowIconUp.png", 900, 0)
+down = tsapp.Sprite("ArrowIconDown.png", 900, 450)
+up.scale = 0.4
+down.scale = 0.4
+window.add_object(up)
+window.add_object(down)
+
+## -- Edit icons and text boxes -- ##
+
+all_icons = []
+text_boxes = []
+for i in range(LINES_SHOWN):
+    height = 120 + (i * 80)
+
+    ## -- New edit icon -- ##
+
+    edit_icon = tsapp.Sprite("EditIcon.png", 0, 0)
+    edit_icon.scale = 0.4
+    edit_icon.x = 75
+    edit_icon.center_y = height
+    window.add_object(edit_icon)
+    all_icons.append(edit_icon)
+
+    ## -- New text box -- ##
+
+    box = tsapp.TextLabel("Roboto-Light.ttf", 30, 240, height + 15, 800, "")
+    window.add_object(box)
+    text_boxes.append(box)
+
+## -- Text parsing -- ##
+text_line = []
+while text != "":
+    next_line = text[:LINE_LENGTH]
+    text = text[LINE_LENGTH:]
+    text_line.append(next_line)
+    
+
+
+## -- Runtime variables -- ##
+top_line = 0
+update = True
+
+
+
+
+#### ---- MAIN LOOP ---- ####
+while window.is_running:
+
+
+    ## -- Mouse clicks -- ##
+    if tsapp.was_mouse_pressed():
+        x, y = tsapp.get_mouse_position()
+        
+        ## -- Up arrow -- ##
+        if up.is_colliding_point(x, y):
+            top_line -= 1
+            if top_line < 0:
+                top_line = 0
+                update = True
+
+        
+
+
+
+
+        ## -- Down arrow -- ##
+        elif down.is_colliding_point(x, y):
+            top_line += 1
+            last_top = len(text_line) - LINES_SHOWN
+            if top_line >= last_top:
+                top_line = last_top
+            update = True
+
+
+
+
+        ## -- Redact -- ##
+        else:
+            for i in all_icons:
+                if i.is_colliding_point(x, y):
+                    clicked = all_icons.index(i)
+                    text_position = clicked + top_line
+                    text_line[text_position] = "-" * LINE_LENGTH
+                    update = True
+
+
+
+
+
+
+    ## -- Update text -- ##
+    if update:
+        displayed_lines = text_line[top_line:top_line + LINES_SHOWN]
+        for i in range(len(displayed_lines)):
+            text_boxes[i].text = displayed_lines[i]
+
+
+
+
+    ## -- Finish frame -- ##
+    window.finish_frame()
+    update = False
