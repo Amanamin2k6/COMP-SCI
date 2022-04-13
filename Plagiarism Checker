@@ -1,0 +1,40 @@
+"""
+String Operations
+Instruction Practice: String Splits and Joins
+Plagiarism Checker
+"""
+
+#### ---- SETUP ---- ####
+
+import ts_quotes
+
+original_quote = ts_quotes.get_original_quote()
+new_quote = ts_quotes.get_new_quote()
+
+print("Original Quote: " + original_quote)
+print("New Quote: " + new_quote)
+print()
+
+#### ---- MATCH CALCULATION ---- ####
+words = original_quote.split()
+new_words = new_quote.split()
+matches = 0
+for word in new_words:
+    if word in words:
+        matches += 1
+
+
+
+
+
+
+
+#### ---- OUTPUT ---- ####
+if matches / len(new_words) >= 0.8:
+    print("These quotes are very similar, and the new quote may be plagiarizing the original.")
+else:
+    print("The new quote doesn't appear to be plagiarizing the original.")
+
+
+
+
