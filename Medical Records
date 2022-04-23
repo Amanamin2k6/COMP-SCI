@@ -1,0 +1,64 @@
+"""
+Strings as Collections
+Coding Exercise: Strings as Collections
+Medical Records
+"""
+
+#### ---- SETUP ---- ####
+import ts_parser
+
+
+## -- User input -- ##
+patient_name = input("Enter patient's full name: ")
+start_year = input("Enter a starting year: ")
+while not start_year.isdigit() or len(start_year) != 4:
+    start_year = input("Please enter a four-digit year: ")
+start_year = int(start_year)
+end_year = input("Enter a end year: ")
+while not end_year.isdigit() or len(end_year) != 4:
+    end_year = input("Please enter a four-digit year: ")
+end_year = int(end_year) 
+## -- File input -- ##
+record_text = ts_parser.load_string("records.txt")
+records = record_text.split("\n")
+
+#### ---- RECORD SEARCH ---- ####
+total_cost = 0
+output = "Expenses:\n"
+
+for files in records:
+    ## -- Skipping blank records -- ##
+    if files.isspace() or files == "":
+        continue
+
+
+    ## -- Name filter -- ##
+    record = files.split(", ")
+    name = record[1] + " " + record[0]
+    if patient_name != name:
+        continue
+
+
+
+
+    ## -- Year filter -- ##
+    date_of_visit = record[2]
+    date_num = date_of_visit.split("/")
+    year = int(date_num[2])
+    if year < start_year or year > end_year:
+        continue
+
+
+    ## -- Finding procedure and cost -- ##
+    description = record[3]
+    cost2 = record[4]
+    cost = int(cost2[1:])
+
+
+    ## -- Record output and cost -- ##
+    output += date_of_visit + ": $" + str(cost) + " for " + description + "\n"
+    total_cost += cost
+
+## -- Total output -- ##
+print(output)
+print("Total Cost: $" + str(total_cost))
