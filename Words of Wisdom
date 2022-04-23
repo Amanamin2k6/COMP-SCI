@@ -1,0 +1,119 @@
+"""
+String Operations
+Coding Exercise: String Operations
+Words of Wisdom
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Starting phrases -- ##
+
+import random
+advice = ["A _1 saved is a _2 earned",
+          "Never look a gift _2 in the _1",
+          "All's fair in _1 and _2",
+          "_2 makes the _1 grow fonder",
+          "A _1 in the hand is worth two in the _2",
+          "The _2 is mightier than the _1",
+          "A _1 and his _2 are soon parted",
+          "A _2 a day keeps the _1 away",
+          "Don't put the _1 before the _2",
+          "A rolling _2 gathers no _1",
+          "A _1 in time saves _2",
+          "_2 is in the _1 of the beholder",
+          "Don't judge a _1 by its _2",
+          "Don't put all your _2 in one _1",
+          "The early _1 gets the _2",
+          "Every _2 has a silver _1",
+          "_1 favors the _2",
+          "_2 is the best _1",
+          "A _1 of a thousand miles begins with a single _2",
+          "You can't make a _1 without breaking some _2",
+          "A _2 is only as strong as its weakest _1",
+          "_1 catches more flies than _2",
+          "You can lead a _2 to _1, but you can't make it drink",
+          "There is no _1 on the _2",
+          "You can't pluck a _2 off a bald _1",
+          "Live like a _1 in _2",
+          "A _2 across the sea can be seen, a _1 on the eyelid can't",
+          "Only a _1 tests the depth of a _2 with both feet",
+          "Rain beats the _2's skin, but it does not wash out the _1",
+          "Shared _1 is a double _1, shared _2 is half a _2",
+          "Where _2 reigns, the _1 may be attained",
+          "A _1 does not know the taste of _2",
+          "The most beautiful _2 may contain a _1",
+          "Evil enters like a _1 and spreads like a _2",
+          "_2 is honorable and _1 is noble",
+          "In a _1 battle, a _2 will get squashed",
+          "Give a man a _2 and you feed him for a _1",
+          "It takes a _1 to raise a _2",
+          "A large _2 does not make a _1",
+          "_1 in youth is like engraving in _2",
+          "A _2 does not seek his _1; _1 seeks its _2",
+          "Turn your _2 towards the sun and the _1 will fall behind you",
+          "If you go to a _1's house, don't talk about _2",
+          "With great _2 comes great _1"
+         ]
+
+## -- User input -- ##
+print("2 Players should each think of a word without discussing them. ")
+input("Hit enter when you're ready to continue.")
+print()
+player_1 = input("Player 1, enter a singular noun: ")
+player_2 = input("Player 2, enter a singular noun: ")
+
+
+
+## -- Blank replacement -- ##
+chosen_phrase = []
+
+for i in range(6):
+    phrase = random.choice(advice)
+    advice.remove(phrase)
+    phrase = phrase.replace("_1", player_1.lower())
+    phrase = phrase.replace("_2", player_2.lower())
+    
+    chosen_phrase.append(phrase)
+
+## -- Phrase tracking variables -- ##
+votes = 0
+first_phrase = chosen_phrase[0]
+second_phrase = chosen_phrase[1]
+chosen_phrase.remove(first_phrase)
+chosen_phrase.remove(second_phrase)
+
+
+#### ---- MAIN LOOP ---- ####
+for i in range(5):
+
+    print()
+    ## -- Phrase display -- ##
+    print("ROUND " + str(i + 1) + ":")
+    print(first_phrase + "\tVS\t" + second_phrase)
+    print()
+    print("Which was the better advice? ")
+    ## -- User vote -- ##
+    response = input("1 or 2: ")
+    while response != "1" and response != "2":
+        response = input("Please choose 1 or 2: ")
+    if response == "2":
+        first_phrase = second_phrase
+        votes = 1
+    else:
+        votes += 1
+
+
+    if chosen_phrase != []:
+        second_phrase = random.choice(chosen_phrase)
+        chosen_phrase.remove(second_phrase)
+
+
+#### ---- FINAL OUTPUT ---- ####
+message = "The winning advice was \"" + first_phrase + "\" which was voted for " + str(votes) + " times. "
+
+if votes >= 3:
+    message = message.upper()
+    message = message.replace(".", "!")
+print()
+print(message)
+
