@@ -1,0 +1,93 @@
+"""
+Dictionaries
+Instruction: Dictionary Iteration
+Part 2: Motel Booker
+"""
+
+#### ---- SETUP ---- ####
+
+motel = {
+  "101": "Jackson",
+  "102": "()",
+  "103": "Chang",
+  "104": "MacNamera",
+  "105": "()",
+  "201": "()",
+  "202": "Nguyen",
+  "203": "()",
+  "204": "()",
+  "205": "Davis"
+  }
+
+print("Welcome to the Smart Tech Motel")
+
+#### ---- MAIN LOOP ---- ####
+
+while True:
+
+    print("Please enter an action:")
+    print("\tin: check in")
+    print("\tout: check out")
+    print("\tview: view all rooms")
+    print("\tempty: view all empty rooms")
+    print("\tdone: end program")
+    choice = input()
+
+    if choice == "done":
+        break
+    print()
+
+    ## -- Check in -- ##
+
+    if choice == "in":
+        occupants = list(motel.values())
+        open_rooms = occupants.count("()")
+        print("There are " + str(open_rooms) + " rooms available.")
+
+        if open_rooms > 0:
+            name = input("Please enter the guest's last name: ")
+            room_states = list(motel.items())
+
+            for state in room_states:
+                room, occupant = state
+
+                if occupant == "()":
+                    print("The guest will be placed in room " + room)
+                    motel[room] = name
+                    break
+
+    ## -- Check out -- ##
+
+    elif choice == "out":
+        room = input("Please enter a room number: ")
+
+        if room in motel:
+            occupant = motel[room]
+
+            if occupant == "()":
+                print("No one was in that room.")
+            else:
+                print(motel[room] + " has been checked out.")
+                motel[room] = "()"
+
+        else:
+            print("Not a valid room number.")
+
+    ## -- View -- ##
+    elif choice == "empty":
+        rooms = list(motel.keys())
+        rooms.sort()
+
+        for room in rooms:
+            if motel[room] == "()":
+                print("Room " + room + ": " + motel[room])
+                
+    else:
+        rooms = list(motel.keys())
+        rooms.sort()
+
+        for room in rooms:
+            if motel[room] != "()":
+                print("Room " + room + ": " + motel[room])
+
+    print()
