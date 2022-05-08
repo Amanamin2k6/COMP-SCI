@@ -1,0 +1,55 @@
+"""
+Dictionaries
+Technique Demo: Unpacked Iteration
+SocialFace Friends
+"""
+
+#### ---- SETUP ---- ####
+
+import tsapp
+window = tsapp.GraphicsWindow()
+background = tsapp.Sprite("AbstractRedBrightWave.jpg", 0, 0)
+window.add_object(background)
+title = tsapp.TextLabel("LuckiestGuy-Regular.ttf", 60, 0, 50, 1018, "SocialFace Friend List", tsapp.BLACK)
+title.align = "center"
+window.add_object(title)
+
+## -- Friend dictionary -- ##
+
+friends = {
+  "Ada": "AdaPortrait.png",
+  "Melissa": "ProfileImage2.png",
+  "Aliya": "ProfileImage3.png",
+  "Isaac": "IsaacPortrait.png",
+  "Yukichi": "YukichiPortrait.png",
+  "Taylor": "ProfileImage.png",
+  "Ha-joon": "ProfileImage4.png",
+  "Seshat": "SeshatPortrait.png"
+}
+
+## -- Graphics creation -- ##
+
+x = 100
+y = 130
+for name, image in list(friends.items()):
+    ## -- Creation -- ##
+
+    new_sprite = tsapp.Sprite(image, 0, 0)
+    new_sprite.scale = 0.3
+    new_sprite.center = (x, y)
+    new_name = tsapp.TextLabel("LuckiestGuy-Regular.ttf", 40, x + 100, y, 400, name, tsapp.WHITE)
+
+    window.add_object(new_sprite)
+    window.add_object(new_name)
+
+    ## -- Spacing -- ##
+
+    y += 120
+    if y > 550:
+        y = 130
+        x = 550
+
+#### ---- MAIN LOOP ---- ####
+
+while window.is_running:
+    window.finish_frame()
