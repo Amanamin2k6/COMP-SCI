@@ -1,0 +1,37 @@
+"""
+Dictionaries
+Technique Practice: Unpacked Iteration
+Trivia Time
+"""
+
+#### ---- SETUP ---- ####
+
+import ts_trivia
+
+question = ts_trivia.get_question()
+user_answers = ts_trivia.get_answers()
+
+print("TODAY'S TRIVIA QUESTION:")
+print(question)
+print()
+
+#### ---- OUTPUT ---- ####
+
+print("Here are the results from all users:")
+
+## -- Find popular answer -- ##
+right = max(user_answers.values())
+
+for question, percent in list(user_answers.items()):
+    if percent == right:
+        correct = question
+
+
+## -- Show all answers -- ##
+for question, percent in list(user_answers.items()):
+    if question == correct:
+        print("* " + question + " - " + str(percent) + "%")
+    else:
+        print(question + " - " + str(percent) + "%")
+
+
