@@ -1,0 +1,46 @@
+"""
+Dictionaries
+Technique Practice: Unpacked Iteration
+Streaming Live
+"""
+
+#### ---- SETUP ---- ####
+
+## -- Library -- ##
+
+import ts_streaming
+
+following = {
+    "BlackRibbon": False,
+    "Mikasprey": False,
+    "SamuraiWarrior12": False,
+    "PetiteAnnie": False,
+    "KPop4Life": False,
+    "ElementaryMyDear": False,
+    "ArcadeTokens": False,
+    "BabyDoll44": False,
+    "CoolMathVids": False,
+    "100CoinFlips": False,
+    "GodlyGodwin": False,
+    "EpicSpeedruns": False,
+    "MindYourCraft": False
+    }
+
+## -- Online status -- ##
+
+ts_streaming.get_online(following)
+
+## -- Online users -- ##
+streaming_now = []
+for name, stat in list(following.items()):
+    if stat:
+        streaming_now.append(name)
+
+
+
+#### ---- OUTPUT ---- ####
+
+print(str(len(streaming_now)) + " people currently streaming:")
+streaming_now.sort()
+for streamer in streaming_now:
+    print("\t" + streamer)
