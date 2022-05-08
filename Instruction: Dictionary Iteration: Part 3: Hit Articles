@@ -1,0 +1,50 @@
+"""
+Dictionaries
+Instruction: Dictionary Iteration
+Part 3: Hit Articles
+"""
+
+import random
+
+articles = {
+  "Dog Bites Man": 204,
+  "Man Bites Dog": 802,
+  "New Study Shows Elephants Are In Fact Afraid Of Mice": 761,
+  "26 Cat Photos You Have to See To Believe": 1041,
+  "Weather Reports Found To Be Only 73% Accurate": 553,
+  "3-Headed Snake Recently Found in Florida": 632
+}
+
+print("Check out this article: ")
+print()
+
+## -- Random post -- ##
+random_article = random.choice(list(articles.keys()))
+print(random_article)
+
+
+## -- Rank -- ##
+rank = 1
+random_views = articles[random_article]
+
+for views in list(articles.values()):
+    if views > random_views:
+        rank += 1
+print("This is the number " + str(rank) + " most popular post.")
+
+
+
+
+
+
+
+## -- All -- ##
+
+print()
+print("View all articles: ")
+for headline in articles:
+    print("\t" + headline)
+
+
+
+
